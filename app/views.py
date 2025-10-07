@@ -1,11 +1,22 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.db.models import Q
 from app.models import Book, Author, Category, Comment, User
+
 
 @api_view()
 def get_book_list(request):
+    search = request.query_params.get('search', '').strip()
+
+    if search:
+        book_qs = Book.objects.filter(
+            Q(title__icontains=search)
+        ).distinct()
+    else:
+        book_qs = Book.objects.all()
+
     books = []
-    for book in Book.objects.all():
+    for book in book_qs:
         books.append({
             "id": book.id,
             "title": book.title,
