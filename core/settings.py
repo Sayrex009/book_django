@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["142.93.110.19:8004"]
+ALLOWED_HOSTS = ["142.93.110.19"]
 
 
 # Application definition
